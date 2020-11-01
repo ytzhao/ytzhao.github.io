@@ -5,7 +5,7 @@ node_js:
 cache: npm
 branches:
   only:
-    - development # build development branch only
+    - src # build src branch only
 script:
   - hexo generate # generate static files
 deploy:
@@ -15,5 +15,5 @@ deploy:
   keep-history: true
   target-branch: master 
   on:
-    branch: development
+    branch: src 
   local-dir: public
