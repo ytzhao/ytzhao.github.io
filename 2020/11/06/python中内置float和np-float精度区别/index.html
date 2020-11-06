@@ -22,29 +22,36 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题发现背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python中内置float和np.float精度区别">
+<meta property="og:url" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题发现背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png">
+<meta property="article:published_time" content="2020-11-06T15:57:54.000Z">
+<meta property="article:modified_time" content="2020-11-06T16:17:19.919Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Hexo</title>
+  <title>python中内置float和np.float精度区别 | Hexo</title>
   
 
 
@@ -164,7 +171,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -176,6 +183,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%8F%91%E7%8E%B0%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">问题发现背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%9F%E6%9C%AC%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">1 原本的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">2 解决方法</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -221,11 +229,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-    
+
+  
 
 
 <div class="post-block">
@@ -245,10 +254,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">python中内置float和np.float精度区别</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          python中内置float和np.float精度区别
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -294,7 +302,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>Python标准：python默认的float类型是C中的double（64位）</p>
+        <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>Python标准：python默认的float类型是C中的double（64位）</p>
 <p>Numpy标准：numpy.float32，约等于C中的float（32位）</p>
 <p><img src="python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png" alt="numpy_c_type"></p>
 <h1 id="问题发现背景"><a href="#问题发现背景" class="headerlink" title="问题发现背景"></a>问题发现背景</h1><p>在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。</p>
@@ -308,7 +316,6 @@
 <h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2 解决方法"></a>2 解决方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">		<span class="comment"># data = np.fromfile(dat_file_name, dtype=float)</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=np.float32)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 786432</span></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -316,99 +323,27 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/01/hello-world/" rel="prev" title="hello-world">
+                  <i class="fa fa-chevron-left"></i> hello-world
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
 
 
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/01/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/01/hello-world/" class="post-title-link" itemprop="url">hello-world</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2020-11-01 20:37:51 / Modified: 21:59:19" itemprop="dateCreated datePublished" datetime="2020-11-01T20:37:51+08:00">2020-11-01</time>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>34</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to ytzhao.github.io with <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>!</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-  
 
 
 
