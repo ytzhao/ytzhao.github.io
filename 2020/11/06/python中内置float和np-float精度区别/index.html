@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -19,23 +19,23 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题发现背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++">
+  <meta name="description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题被发现的背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python中内置float和np.float精度区别">
 <meta property="og:url" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题发现背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png">
+<meta property="og:description" content="结论Python标准：python默认的float类型是C中的double（64位） Numpy标准：numpy.float32，约等于C中的float（32位）  问题被发现的背景在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。 1 原本的写法问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/.com//numpy_c_type.png">
 <meta property="article:published_time" content="2020-11-06T15:57:54.000Z">
-<meta property="article:modified_time" content="2020-11-06T16:17:19.919Z">
+<meta property="article:modified_time" content="2020-11-07T16:50:54.035Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png">
+<meta name="twitter:image" content="http://example.com/.com//numpy_c_type.png">
 
 
 <link rel="canonical" href="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/">
@@ -47,7 +47,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -103,7 +103,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -131,27 +131,27 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -174,16 +174,16 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%8F%91%E7%8E%B0%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">问题发现背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%9F%E6%9C%AC%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">1 原本的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">2 解决方法</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A2%AB%E5%8F%91%E7%8E%B0%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">问题被发现的背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8E%9F%E6%9C%AC%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">1 原本的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">2 解决方法</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,12 +198,14 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -241,7 +243,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -264,34 +266,34 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2020-11-06 23:57:54" itemprop="dateCreated datePublished" datetime="2020-11-06T23:57:54+08:00">2020-11-06</time>
+      <time title="创建时间：2020-11-06 23:57:54" itemprop="dateCreated datePublished" datetime="2020-11-06T23:57:54+08:00">2020-11-06</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-11-07 00:17:19" itemprop="dateModified" datetime="2020-11-07T00:17:19+08:00">2020-11-07</time>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-08 00:50:54" itemprop="dateModified" datetime="2020-11-08T00:50:54+08:00">2020-11-08</time>
       </span>
 
   
       </div>
       <div class="post-meta">
-    <span class="post-meta-item" title="Symbols count in article">
+    <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>859</span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>861</span>
     </span>
-    <span class="post-meta-item" title="Reading time">
+    <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -304,16 +306,16 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>Python标准：python默认的float类型是C中的double（64位）</p>
 <p>Numpy标准：numpy.float32，约等于C中的float（32位）</p>
-<p><img src="python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/numpy_c_type.png" alt="numpy_c_type"></p>
-<h1 id="问题发现背景"><a href="#问题发现背景" class="headerlink" title="问题发现背景"></a>问题发现背景</h1><p>在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。</p>
+<p><img src="/.com//numpy_c_type.png" alt="numpy_c_type"></p>
+<h1 id="问题被发现的背景"><a href="#问题被发现的背景" class="headerlink" title="问题被发现的背景"></a>问题被发现的背景</h1><p>在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。</p>
 <h2 id="1-原本的写法"><a href="#1-原本的写法" class="headerlink" title="1 原本的写法"></a>1 原本的写法</h2><p>问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++的一半。</p>
 <p>c++：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">std::ofstream out_file(&#x27;./out.dat&#x27;, std::ios::out | std::ios::binary);</span><br><span class="line">out_file.write((<span class="keyword">const</span> <span class="keyword">char</span>*)pos, <span class="keyword">sizeof</span>(<span class="keyword">float</span>)*(my_vector.size()));</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;dat size:&quot;</span> &lt;&lt; my_vector.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">out_file.close();</span><br><span class="line"></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// dat size: 786432</span></span><br></pre></td></tr></table></figure>
 
 <p>python：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">		data = np.fromfile(dat_file_name, dtype=<span class="built_in">float</span>)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 393216</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=<span class="built_in">float</span>)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 393216</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2 解决方法"></a>2 解决方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">		<span class="comment"># data = np.fromfile(dat_file_name, dtype=float)</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=np.float32)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 786432</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2 解决方法"></a>2 解决方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">    <span class="comment"># data = np.fromfile(dat_file_name, dtype=float)</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=np.float32)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 786432</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -394,16 +396,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">1k</span>
+    <span title="站点总字数">1k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1 mins.</span>
+    <span title="站点阅读时长">1 分钟</span>
   </span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
