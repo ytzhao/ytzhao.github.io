@@ -22,18 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <meta name="description" content="前期准备注意一定要安装下面这个版本的 hexo-asset-image，否则图像还是会显示不正确。 1npm install https:&#x2F;&#x2F;github.com&#x2F;CodeFalling&#x2F;hexo-asset-image --save">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Hexo NEXT主题中插入本地图片">
+<meta property="og:url" content="http://example.com/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前期准备注意一定要安装下面这个版本的 hexo-asset-image，否则图像还是会显示不正确。 1npm install https:&#x2F;&#x2F;github.com&#x2F;CodeFalling&#x2F;hexo-asset-image --save">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-07T15:46:13.000Z">
-<meta property="article:modified_time" content="2020-11-07T15:46:52.570Z">
+<meta property="article:published_time" content="2020-11-08T08:02:57.000Z">
+<meta property="article:modified_time" content="2020-11-08T08:24:29.488Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/about/">
+<link rel="canonical" href="http://example.com/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">
 
 
 <script class="page-configurations">
@@ -41,7 +43,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script><style>
@@ -59,8 +61,7 @@
 </style>
 
 
-  <title>about | Hexo
-</title>
+  <title>在Hexo NEXT主题中插入本地图片 | Hexo</title>
   
 
 
@@ -208,7 +209,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -220,6 +221,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8-md%E6%96%87%E6%A1%A3%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text">在.md文档中插入图像</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -267,44 +269,110 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
       
-  
-  
 
       
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Hexo NEXT主题中插入本地图片
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">about
-</h1>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-<div class="post-meta-container">
+      <time title="创建时间：2020-11-08 16:02:57 / 修改时间：16:24:29" itemprop="dateCreated datePublished" datetime="2020-11-08T16:02:57+08:00">2020-11-08</time>
+    </span>
+
   
-
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>309</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>注意一定要安装下面这个版本的 <code>hexo-asset-image</code>，否则图像还是会显示不正确。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>设置<code>your_blog_dir/_config.yml</code> 中<code>post_asset_folder: true</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_posts/</span><br><span class="line">|__ test.md</span><br><span class="line">|__ test/</span><br><span class="line">    |__ test.png</span><br></pre></td></tr></table></figure>
+
+<h1 id="在-md文档中插入图像"><a href="#在-md文档中插入图像" class="headerlink" title="在.md文档中插入图像"></a>在.md文档中插入图像</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_img test.png This is an test image %&#125;</span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="comment">&lt;!-- 或者 --&gt;</span></span> </span></span><br><span class="line"><span class="emphasis">![<span class="string">This is an test image</span>](<span class="link">test.png</span>)</span></span><br></pre></td></tr></table></figure>
+
+
     </div>
-    
 
     
     
     
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/" rel="prev" title="python中内置float和np.float精度区别">
+                  <i class="fa fa-chevron-left"></i> python中内置float和np.float精度区别
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
       

@@ -42,7 +42,20 @@
     isPost : false,
     lang   : 'zh-CN'
   };
-</script>
+</script><style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
 
   <title>Hexo</title>
   
@@ -114,6 +127,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -147,11 +161,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -189,7 +230,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -235,6 +276,96 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">在Hexo NEXT主题中插入本地图片</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-08 16:02:57 / 修改时间：16:24:29" itemprop="dateCreated datePublished" datetime="2020-11-08T16:02:57+08:00">2020-11-08</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>309</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>注意一定要安装下面这个版本的 <code>hexo-asset-image</code>，否则图像还是会显示不正确。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/08/%E5%9C%A8Hexo-NEXT%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -267,7 +398,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-08 00:50:54" itemprop="dateModified" datetime="2020-11-08T00:50:54+08:00">2020-11-08</time>
+        <time title="修改时间：2020-11-08 16:24:05" itemprop="dateModified" datetime="2020-11-08T16:24:05+08:00">2020-11-08</time>
       </span>
 
   
@@ -278,7 +409,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>861</span>
+      <span>859</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -298,18 +429,14 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>Python标准：python默认的float类型是C中的double（64位）</p>
 <p>Numpy标准：numpy.float32，约等于C中的float（32位）</p>
-<p><img src="/.com//numpy_c_type.png" alt="numpy_c_type"></p>
-<h1 id="问题被发现的背景"><a href="#问题被发现的背景" class="headerlink" title="问题被发现的背景"></a>问题被发现的背景</h1><p>在c++中处理数据，把处理后的数据（c++ float类型）写成二进制文件，再从numpy中把该二进制文件读入且输出。</p>
-<h2 id="1-原本的写法"><a href="#1-原本的写法" class="headerlink" title="1 原本的写法"></a>1 原本的写法</h2><p>问题现象：c++写出和python读入的数据长度不一样，且python的数据长度是c++的一半。</p>
-<p>c++：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">std::ofstream out_file(&#x27;./out.dat&#x27;, std::ios::out | std::ios::binary);</span><br><span class="line">out_file.write((<span class="keyword">const</span> <span class="keyword">char</span>*)pos, <span class="keyword">sizeof</span>(<span class="keyword">float</span>)*(my_vector.size()));</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;dat size:&quot;</span> &lt;&lt; my_vector.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">out_file.close();</span><br><span class="line"></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// dat size: 786432</span></span><br></pre></td></tr></table></figure>
-
-<p>python：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=<span class="built_in">float</span>)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 393216</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2 解决方法"></a>2 解决方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_dat_result</span>(<span class="params">dat_file_name</span>):</span></span><br><span class="line">    <span class="comment"># data = np.fromfile(dat_file_name, dtype=float)</span></span><br><span class="line">    data = np.fromfile(dat_file_name, dtype=np.float32)</span><br><span class="line">    print(<span class="string">&quot;numpy dat shape:&quot;</span>, data.shape)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># numpy dat shape: 786432</span></span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/06/python%E4%B8%AD%E5%86%85%E7%BD%AEfloat%E5%92%8Cnp-float%E7%B2%BE%E5%BA%A6%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -349,7 +476,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/01/hello-world/" class="post-title-link" itemprop="url">hello-world</a>
+            <a href="/2020/11/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta-container">
@@ -359,10 +486,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-01 20:37:51 / 修改时间：21:59:19" itemprop="dateCreated datePublished" datetime="2020-11-01T20:37:51+08:00">2020-11-01</time>
+      <time title="创建时间：2020-11-01 20:37:51" itemprop="dateCreated datePublished" datetime="2020-11-01T20:37:51+08:00">2020-11-01</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-08 16:17:59" itemprop="dateModified" datetime="2020-11-08T16:17:59+08:00">2020-11-08</time>
+      </span>
 
   
       </div>
@@ -484,6 +617,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 
