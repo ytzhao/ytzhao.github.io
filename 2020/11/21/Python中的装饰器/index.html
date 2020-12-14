@@ -31,8 +31,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2020/11/21/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA1.png">
 <meta property="og:image" content="http://example.com/2020/11/21/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA3.png">
+<meta property="og:image" content="http://example.com/Users/fz/Documents/ytzhao.github.io/source/_posts/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA4.png">
 <meta property="article:published_time" content="2020-11-21T15:39:37.000Z">
-<meta property="article:modified_time" content="2020-11-21T16:51:07.769Z">
+<meta property="article:modified_time" content="2020-11-22T14:20:45.616Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="编程">
@@ -198,7 +199,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8%EF%BC%9F"><span class="nav-text">1 什么时候使用装饰器？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90-%F0%9F%8C%B0%EF%BC%9ALog"><span class="nav-text">2 举个栗子 🌰：Log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%932-1-%E6%96%B0%E9%9C%80%E6%B1%82"><span class="nav-text">❓2.1 新需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-2-2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">✅ 2.2 解决方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%8E%9F%E5%A7%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0-args-kwargs"><span class="nav-text">2 原始代码中带有参数 *args, **kwargs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%87%AA%E8%BA%AB%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0"><span class="nav-text">3 装饰器自身带有参数</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-text">1 装饰器是什么，有什么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90-%F0%9F%8C%B0%EF%BC%9ALog"><span class="nav-text">2 举个栗子 🌰：Log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%932-1-%E6%96%B0%E9%9C%80%E6%B1%82"><span class="nav-text">❓2.1 新需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-2-2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">✅ 2.2 解决方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%8E%9F%E5%A7%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0-args-kwargs"><span class="nav-text">2 原始代码中带有参数 *args, **kwargs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E8%A3%85%E9%A5%B0%E5%99%A8%E8%87%AA%E8%BA%AB%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0"><span class="nav-text">3 装饰器自身带有参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-functools-wraps"><span class="nav-text">4 使用@functools.wraps</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%BC%95%E7%94%A8"><span class="nav-text">5 引用</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -219,7 +220,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -291,7 +292,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-22 00:51:07" itemprop="dateModified" datetime="2020-11-22T00:51:07+08:00">2020-11-22</time>
+        <time title="修改时间：2020-11-22 22:20:45" itemprop="dateModified" datetime="2020-11-22T22:20:45+08:00">2020-11-22</time>
       </span>
 
   
@@ -302,14 +303,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -325,8 +326,8 @@
 </blockquote>
 <a id="more"></a>
 
-<h1 id="1-什么时候使用装饰器？"><a href="#1-什么时候使用装饰器？" class="headerlink" title="1 什么时候使用装饰器？"></a>1 什么时候使用装饰器？</h1><p>可以在不修改原始代码的情况，为已经存在的对象添加一些额外的功能。常用的需求场景就是：日志功能、性能测试等。Python中的修饰器的设计其实就是设计模式中的装饰者模式。</p>
-<p>装饰器本身可以是函数也可以是类，如果使用的是类装饰器，那么使用@形式装饰时，其实上调用的是类装饰器的<code>__call__</code>方法。</p>
+<h1 id="1-装饰器是什么，有什么用？"><a href="#1-装饰器是什么，有什么用？" class="headerlink" title="1 装饰器是什么，有什么用？"></a>1 装饰器是什么，有什么用？</h1><p>可以在不修改原始代码的情况，为已经存在的对象添加一些额外的功能。常见的应用场景就是：日志功能、性能测试等。Python中的修饰器的设计其实就是设计模式中的装饰者模式。</p>
+<p>装饰器本身可以是函数也可以是类，如果使用的是类装饰器，那么使用@形式（Python装饰糖）进行装饰时，其实上调用的是类装饰器的<code>__call__</code>方法。</p>
 <h1 id="2-举个栗子-🌰：Log"><a href="#2-举个栗子-🌰：Log" class="headerlink" title="2 举个栗子 🌰：Log"></a>2 举个栗子 🌰：Log</h1><h2 id="❓2-1-新需求"><a href="#❓2-1-新需求" class="headerlink" title="❓2.1 新需求"></a>❓2.1 新需求</h2><p>原始代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc1</span>():</span></span><br><span class="line">  print(<span class="string">&quot;Hello &quot;</span>)</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc2</span>():</span></span><br><span class="line">  print(<span class="string">&quot;World!&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -340,10 +341,18 @@
 
 
 <h1 id="3-装饰器自身带有参数"><a href="#3-装饰器自身带有参数" class="headerlink" title="3 装饰器自身带有参数"></a>3 装饰器自身带有参数</h1><p>加入我们的<code>dummyLog</code>函数带有参数，例如输出日志有不同的等级，那么我们也可以在装饰器中添加参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummyLog</span>(<span class="params">level=<span class="string">&quot;info&quot;</span></span>):</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">decorator</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        print(<span class="string">&quot;[&#123;&#125;] [TIME] &#123;&#125; [FUNC]:&#123;&#125; &gt;&gt;&gt; &quot;</span>.<span class="built_in">format</span>(level, time.asctime( time.localtime(time.time())), func.__name__))</span><br><span class="line">      <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line">  <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="meta">@dummyLog()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc1</span>(<span class="params">a=<span class="number">1</span>, b=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>&#125;</span>):</span></span><br><span class="line">  print(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@dummyLog(level=&quot;debug&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc2</span>():</span></span><br><span class="line">  print(<span class="string">&quot;World!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummyLog</span>(<span class="params">level=<span class="string">&quot;info&quot;</span></span>):</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">decorator</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        print(<span class="string">&quot;[&#123;&#125;] [TIME] &#123;&#125; [FUNC]:&#123;&#125; &gt;&gt;&gt; &quot;</span>.<span class="built_in">format</span>(level, time.asctime( time.localtime(time.time())), func.__name__))</span><br><span class="line">      <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line">  <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="meta">@dummyLog()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc1</span>(<span class="params">a=<span class="number">1</span>, b=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>&#125;</span>):</span></span><br><span class="line">  print(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@dummyLog(level=&quot;debug&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myFunc2</span>():</span></span><br><span class="line">  print(<span class="string">&quot;World!&quot;</span>)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">  myFunc1()</span><br><span class="line">  myFunc2()</span><br><span class="line">  print(<span class="string">&#x27;&gt;&gt;&gt; myFunc1 name:&#x27;</span>, myFunc1.__name__)</span><br><span class="line">  print(<span class="string">&#x27;&gt;&gt;&gt; myFunc2 name:&#x27;</span>, myFunc2.__name__)</span><br></pre></td></tr></table></figure>
 
-<p>输出</p>
-<p><img src="/2020/11/21/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA3.png" alt="image-20201122004125239"></p>
+<p>输出：</p>
+<p>从输出结果我们看到<code>myFunc1</code>和<code>myFunc2</code>的<code>__name__</code>都已经变成了wrapper，这个是我们不想要的，那要怎么解决呢？看下面4.</p>
+<p><img src="/2020/11/21/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA3.png" alt="image-20201122215509512"></p>
+<h1 id="4-使用-functools-wraps"><a href="#4-使用-functools-wraps" class="headerlink" title="4 使用@functools.wraps"></a>4 使用@functools.wraps</h1><p>使用<code>functools.wraps</code>装饰<code>wrapper()</code>函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummyLog</span>(<span class="params">level=<span class="string">&quot;info&quot;</span></span>):</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">decorator</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">        print(<span class="string">&quot;[&#123;&#125;] [TIME] &#123;&#125; [FUNC]:&#123;&#125; &gt;&gt;&gt; &quot;</span>.<span class="built_in">format</span>(level, time.asctime( time.localtime(time.time())), func.__name__))</span><br><span class="line">      <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line">  <span class="keyword">return</span> decorator</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<p><img src="/Users/fz/Documents/ytzhao.github.io/source/_posts/Python%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/%E8%BE%93%E5%87%BA4.png" alt="image-20201122220524420"></p>
+<h1 id="5-引用"><a href="#5-引用" class="headerlink" title="5 引用"></a>5 引用</h1><p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017451662295584">Python装饰器 - 廖雪峰</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/python-func-decorators.html">Python函数装饰器 - 菜鸟教程</a></p>
 
     </div>
 
@@ -366,6 +375,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2020/11/22/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" rel="next" title="[HeadFirst设计模式]3：装饰者模式">
+                  [HeadFirst设计模式]3：装饰者模式 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -424,13 +436,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4 分钟</span>
+    <span title="站点阅读时长">5 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
